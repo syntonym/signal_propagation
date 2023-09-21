@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hoernchen"
+version = "0.6.1"
+description = ""
+authors = ["syntonym <syntaar@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

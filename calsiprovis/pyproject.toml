@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "calsiprovis"
+version = "0.17.0"
+description = ""
+authors = ["syntonym <syntaar@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+calsiprovis = 'calsiprovis.cli:cli'
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.12"
+click = "^8.1.3"
+polars = "^0.16.14"
+zstandard = "^0.20.0"
+imageio = "^2.27.0"
+calsipro = {path="../calsipro/"}
+rapids = {path="../rapids/"}
+runnel = {path="../runnel/"}
+hoernchen = {path="../hoernchen/"}
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.1.1"
+pytest = "^7.2.2"
+popy = {version = "^0.1.1", source = "syntonym"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

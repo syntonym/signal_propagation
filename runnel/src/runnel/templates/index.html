@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="./pyodide/pyodide.js"></script>
+      {% if dark %}<style>body { background-color: #060a18; color: #a99d7d; }</style>{% endif %}
+  </head>
+  <body>
+      <span id="init">Initializing</span>
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        await Promise.all([
+            pyodide.loadPackage("micropip"),
+            {%- for wheel in wheels %}
+            pyodide.loadPackage("/wheels/{{wheel}}"),
+            {%- endfor %}
+            ]);
+        document.getElementById("init").remove();
+        await pyodide.runPythonAsync("import {{module}}; {{callable}}({{arg|safe}})");
+      }
+      main();
+    </script>
+    <div id='root'></div>
+  </body>
+</html>
