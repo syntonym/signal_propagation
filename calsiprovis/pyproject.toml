@@ -22,7 +22,6 @@ hoernchen = {path="../hoernchen/"}
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.1.1"
 pytest = "^7.2.2"
-popy = {version = "^0.1.1", source = "syntonym"}
 
 [build-system]
 requires = ["poetry-core"]

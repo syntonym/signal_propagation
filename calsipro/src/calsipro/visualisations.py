@@ -12,7 +12,7 @@ from bokeh.io import show
 
 from matplotlib import cm
 
-from syn_bokeh_helpers import syn_save
+from bokeh_helpers import save
 
 
 def show_mapped_picture(t, out, f=np.max):
@@ -35,7 +35,7 @@ def show_mapped_distribution(t, f=np.max, axis=2, out=None, th=None, **kwargs):
     p.circle(bins, freq)
     if th is not None:
         p.line(x=[th, th], y=[1, np.max(freq)], color='red')
-    syn_save(p, out)
+    save(p, out)
 
 
 def show_mapped_mask_picture(t, out, th=0.5, f=np.max):
@@ -113,6 +113,6 @@ def visualize_debug(out, signal, peaks, debug, debug2, peaks_pairs):
         starts, ends = zip(*peaks_pairs)
         p.circle(starts, signal[np.array(starts)], color="green", size=10, fill_alpha=0.2)
         p.circle(ends, signal[np.array(ends)], color="red", size=10, fill_alpha=0.2)
-    syn_save(p, out)
+    save(p, out)
 
 
