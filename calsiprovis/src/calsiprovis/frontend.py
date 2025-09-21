@@ -9,14 +9,14 @@ import rapids.backend
 import micropip
 
 
-async def run():
+async def run(*args):
 
     socket = Socket('ws://localhost:8888')
     client_server = rapids.backend.ClientServer(socket)
     rapids.backend.client_server = client_server
 
     import calsiprovis.app
-    await calsiprovis.app.run()
+    await calsiprovis.app.run(*args)
 
 
 

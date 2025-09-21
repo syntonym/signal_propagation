@@ -1,5 +1,5 @@
 import click
-import pkg_resources
+from importlib.metadata import version  
 import calsipro.io
 import calsipro.visualisations
 from pathlib import Path
@@ -141,8 +141,8 @@ def analyse(path, scene, video, html, debug):
     logger.debug('Debug logging activated')
 
     logger.info(f'Analysing project {path} scene {scene} video {video} output {html}')
-    calsipro_version = pkg_resources.require("calsipro")[0].version
-    calsiprovis_version = pkg_resources.require("calsiprovis")[0].version
+    calsipro_version = version("calsipro")
+    calsiprovis_version = version("calsiprovis")
     logger.info(f"Executing with version calsipro {calsipro_version} and calsiprovis {calsiprovis_version}.")
     experiment = Experiment.load(path)
     logger.info("Experiment loaded, starting analysis")
@@ -238,8 +238,8 @@ def trace(path, scene, debug):
     logger.debug('Debug logging activated')
 
     logger.info(f'Creating trace for project {path} scene {scene}')
-    calsipro_version = pkg_resources.require("calsipro")[0].version
-    calsiprovis_version = pkg_resources.require("calsiprovis")[0].version
+    calsipro_version = version("calsipro")
+    calsiprovis_version = version("calsiprovis")
     logger.info(f"Executing with version calsipro {calsipro_version} and calsiprovis {calsiprovis_version}.")
     experiment = Experiment.load(path)
 

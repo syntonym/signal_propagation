@@ -23,12 +23,12 @@ def analyse_speed(inp, th=0.25, ct=0.5, filter=True, average=0):
 
 
 def make_colorbar(m, mm, out, fps=1):
-    from syn_bokeh_helpers import syn_save
+    from calsipro.bokeh_helpers import save
     p = figure(frame_height=(mm-m)*40, frame_width=40)
     c = inferno(mm-m)[::-1]
     for i in range(mm-m):
         p.rect(x=0, y=i/fps, width=1/fps, height=1/fps, color=c[i])
-    syn_save(p, out)
+    save(p, out)
 
 
 def analyse_organoid(peaks, d, th=0.25, ct=0.5):

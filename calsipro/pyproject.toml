@@ -1,14 +1,17 @@
 [project]
 name = "calsipro"
-version ="0.16.0"
+version ="0.17.0"
 authors = [{name = "Simon Haendeler", email="opensource@haend.de"}]
 description = "Calcium Signal Propagation Speed Analysis Library"
 dependencies = [
     "aicsimageio>=4.11.0",
+    "aicspylibczi>=3.3.1",
     "bokeh>=3.1.1",
     "click>=8.1.8",
     "datashader>=0.15.2",
     "ffmpeg>=1.4",
+    "fsspec>=2023.6.0",
+    "matplotlib>=3.7.5",
     "numba>=0.58.1",
     "numpy>=1.24.4",
     "openpyxl>=3.1.5",

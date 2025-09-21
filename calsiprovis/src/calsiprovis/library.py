@@ -253,7 +253,8 @@ def get_experiment(path):
         print("Creating new experiment", path)
         try:
             experiment = Experiment.new(path)
-        except:
+        except Exception as e:
+            logger.exception('Exception during experiment loading')
             experiment = None
     return experiment
 
@@ -261,6 +262,13 @@ def get_experiment(path):
 @backend
 def add_gcamp_to(experiment, gcamp_path):
     experiment.add_gcamp(gcamp_path)
+    experiment.save()
+    return experiment
+
+
+@backend
+def add_brightfield_to(experiment, brightfield_path):
+    experiment.add_brightfield(brightfield_path)
     experiment.save()
     return experiment
 
@@ -482,7 +490,7 @@ def load_fluro(experiment, fluro, scene, width=100, height=100):
 def _calculate_fluro_threshold_and_mask(data, organoid_mask):
     if not organoid_mask.any():
         return organoid_mask
-    calsipro.analysis._calculate_fluro_threshold_and_mask(data, organoid_mask)
+    mask = calsipro.analysis._calculate_fluro_threshold_and_mask(data, organoid_mask)
     return mask
 
 

@@ -250,7 +250,10 @@ class Widget(metaclass=MetaWidget):
         id = None
         if not isinstance(widget, Widget):
             id = widget
-            widget = self.id_children[widget]
+            if widget in self.id_children:
+                widget = self.id_children[widget]
+            else:
+                return False
 
         if widget not in self.children:
             return False

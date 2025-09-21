@@ -33,16 +33,38 @@ class MainWidget(Widget):
 
         b_add_gcamp.on('click', self.add_gcamp)
 
+
         self.input_fluro = TextInput()
+        self.input_fluro.flex = '1'
         self.input_fluro_type = TextInput()
+        self.input_fluro_type.flex = '1'
         b_add_fluro = Button(label='Add Fluro')
 
         add_data_container.add_widget(Div(text='Fluro'))
-        add_data_container.add_widget(self.input_fluro)
-        add_data_container.add_widget(self.input_fluro_type)
+
+        fluro_path  = Flexbox(direction='row')
+        fluro_path.add_widget(Div(text='Path to File'))
+        fluro_path.add_widget(self.input_fluro)
+        add_data_container.add_widget(fluro_path)
+
+        fluro_type  = Flexbox(direction='row')
+        fluro_type.add_widget(Div(text='Fluro Type'))
+        fluro_type.add_widget(self.input_fluro_type)
+        add_data_container.add_widget(fluro_type)
+
         add_data_container.add_widget(b_add_fluro)
 
         b_add_fluro.on('click', self.add_fluro)
+
+
+        self.input_brightfield = TextInput()
+        b_add_bf = Button(label='Add Brightfield')
+        add_data_container.add_widget(Div(text='Brightfield'))
+        add_data_container.set_widget('input_brightfield', self.input_brightfield)
+        add_data_container.add_widget(b_add_bf)
+
+        b_add_bf.on('click', self.add_brightfield)
+
 
 
         self.fb = fb = Flexbox(direction='row')
@@ -136,6 +158,11 @@ class MainWidget(Widget):
         path = self.input_fluro.value
         fluro_type = self.input_fluro_type.value
         self.experiment = await library.add_fluro_to(self.experiment, fluro_type, path)
+        self.data_origins = library.load_data_origins(self.experiment)
+
+    async def add_brightfield(self, signal):
+        path = self.input_brightfield.value
+        self.experiment = await library.add_brightfield_to(self.experiment, path)
         self.data_origins = library.load_data_origins(self.experiment)
 
     async def load_max(self, signal):

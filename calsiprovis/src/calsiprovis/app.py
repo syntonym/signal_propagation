@@ -2,6 +2,8 @@ from calsiprovis import library
 from calsiprovis.widgets.pre_main import PreMain
 from pyodide.code import run_js
 from js import document, console
+from rapids.socket.browser import Socket
+import rapids.backend
 import asyncio
 import time
 
@@ -15,7 +17,14 @@ async def load_bokeh():
     for script in bokeh_scripts:
         run_js(script)
 
+
+
 async def run(experiment_ref_path):
+    socket = Socket('ws://localhost:8888')
+    client_server = rapids.backend.ClientServer(socket)
+    rapids.backend.client_server = client_server
+
+    console.log(client_server)
 
     bokeh_loaded = asyncio.create_task(load_bokeh())
     background_tasks.append(bokeh_loaded)

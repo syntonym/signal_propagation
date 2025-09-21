@@ -1,28 +1,30 @@
-[tool.poetry]
+[project]
 name = "calsiprovis"
-version = "0.17.0"
+version = "0.18.0"
 description = ""
-authors = ["syntonym <syntaar@gmail.com>"]
+authors = [{name = "Simon Haendeler", email="opensource@haend.de"}]
 readme = "README.md"
+requires-python = ">=3.9,<3.12"
+dependencies = [
+    "click ~= 8.1.3",
+    "polars ~= 1.8.2",
+    "zstandard ~= 0.20.0",
+    "imageio ~= 2.27.0",
+    "calsipro == 0.17.0",
+    "rapids == 0.5.0",
+    "runnel == 1.3.0",
+    "hoernchen == 0.6.1",
+]
 
-[tool.poetry.scripts]
+[project.scripts]
 calsiprovis = 'calsiprovis.cli:cli'
 
-[tool.poetry.dependencies]
-python = ">=3.9,<3.12"
-click = "^8.1.3"
-polars = "^0.16.14"
-zstandard = "^0.20.0"
-imageio = "^2.27.0"
-calsipro = {path="../calsipro/"}
-rapids = {path="../rapids/"}
-runnel = {path="../runnel/"}
-hoernchen = {path="../hoernchen/"}
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.1.1"
-pytest = "^7.2.2"
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.8.17,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+calsipro = {path  = "../calsipro"}
+hoernchen = {path = "../hoernchen"}
+rapids = {path = "../rapids"}
+runnel = {path ="../runnel"}

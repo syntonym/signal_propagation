@@ -12,7 +12,7 @@ from bokeh.io import show
 
 from matplotlib import cm
 
-from bokeh_helpers import save
+from calsipro.bokeh_helpers import save
 
 
 def show_mapped_picture(t, out, f=np.max):
